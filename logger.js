@@ -2,7 +2,7 @@ const { createLogger, format, transports } = require('winston');
 const { combine, printf } = format;
 
 const myFormat = printf(info => {
-  return `${new Date().toLocaleString()} ${JSON.stringify(info)}`;
+  return `${new Date().toLocaleString()} ${info.message.viewsName} ${info.message.data}`;
 });
 
 const logger = createLogger({
