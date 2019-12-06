@@ -1,6 +1,7 @@
 const express = require('express')
 const User = require('../models/User');
 const auth = require('../middleware/auth');
+const logger = require('../logger');
 const router = express.Router()
 
 router.post('/users/register', async (req, res) => {
@@ -10,7 +11,15 @@ router.post('/users/register', async (req, res) => {
         await user.save()
         const token = await user.generateAuthToken()
         res.status(201).send({ user, token })
+        logger.info({
+            viewsName: 'users/register',
+            data: 'One more user is created'
+        });
     } catch (error) {
+        logger.info({
+            viewsName: 'users/register',
+            data: 'Something goes wrong. Status code: 400'
+        });
         res.status(400).send(error)
     }
 });
@@ -23,9 +32,17 @@ router.post('/users/login', async(req, res) => {
         if (!user) {
             return res.status(401).send({error: 'Login failed! Check authentication credentials'})
         }
-        const token = await user.generateAuthToken()
+        const token = await user.generateAuthToken();
+        logger.info({
+            viewsName: 'users/login',
+            data: 'User is logged in'
+        });
         res.send({ user, token })
     } catch (error) {
+        logger.info({
+            viewsName: 'users/login',
+            data: 'Login request failed'
+        });
         res.status(400).send(error)
     }
 
@@ -33,6 +50,10 @@ router.post('/users/login', async(req, res) => {
 
 router.get('/users/me', auth, async(req, res) => {
     // View logged in user profile
+    logger.info({
+        viewsName: 'users/me',
+        data: 'Request for user profile succeed'
+    });
     res.send(req.user)
 })
 
@@ -44,8 +65,16 @@ router.post('/users/me/logout', auth, async (req, res) => {
             return token.token != req.token
         })
         await req.user.save()
+        logger.info({
+            viewsName: 'users/me/logout',
+            data: 'Request for user logout succeed'
+        });
         res.send()
     } catch (error) {
+        logger.info({
+            viewsName: 'users/me/logout',
+            data: 'Request for user logout failed'
+        });
         res.status(500).send(error)
     }
 })
