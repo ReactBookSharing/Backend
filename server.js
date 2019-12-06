@@ -38,6 +38,8 @@ app.use(express.json());
 
 app.use(require('./routers/user'));
 
+app.use(require('./routers/book'));
+
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}.`);
 });
