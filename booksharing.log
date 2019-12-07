@@ -1,2 +1,19 @@
 2019-12-7 12:56:02 AM users/register Something goes wrong. Status code: 400
 2019-12-7 12:56:14 AM users/login User is logged in
+2019-12-7 3:00:10 AM users/register Something goes wrong. Status code: 400
+2019-12-7 3:00:14 AM users/login User is logged in
+2019-12-7 3:00:21 AM users/me/logout Request for user logout succeed
+2019-12-7 3:00:28 AM users/login User is logged in
+2019-12-7 3:00:35 AM users/login User is logged in
+2019-12-7 3:00:41 AM users/me Request for user profile succeed
+2019-12-7 3:00:44 AM users/me Request for user profile succeed
+2019-12-7 3:00:54 AM users/register Something goes wrong. Status code: 400
+2019-12-7 4:20:28 AM users/login User is logged in
+2019-12-7 10:40:06 AM users/register One more user is created
+2019-12-7 10:40:16 AM users/login User is logged in
+2019-12-7 10:40:23 AM users/me Request for user profile succeed
+2019-12-7 10:40:33 AM users/me/logout Request for user logout succeed
+2019-12-7 10:40:54 AM users/login User is logged in
+2019-12-7 2:55:31 PM users/register Something goes wrong. Status code: 400
+2019-12-7 2:55:35 PM users/login User is logged in
+2019-12-7 2:55:38 PM users/me Request for user profile succeed

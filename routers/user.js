@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const logger = require('../logger');
 const router = express.Router()
 
-router.post('/users/register', async (req, res) => {
+router.post('/register', async (req, res) => {
     // Create a new user
     try {
         const user = new User(req.body)
@@ -24,11 +24,11 @@ router.post('/users/register', async (req, res) => {
     }
 });
 
-router.post('/users/login', async(req, res) => {
+router.post('/login', async(req, res) => {
     //Login a registered user
     try {
-        const { email, password } = req.body
-        const user = await User.findByCredentials(email, password)
+        const { email, password } = req.body;
+        const user = await User.findByCredentials(email, password);
         if (!user) {
             return res.status(401).send({error: 'Login failed! Check authentication credentials'})
         }
@@ -48,7 +48,7 @@ router.post('/users/login', async(req, res) => {
 
 });
 
-router.get('/users/me', auth, async(req, res) => {
+router.get('/me', auth, async(req, res) => {
     // View logged in user profile
     logger.info({
         viewsName: 'users/me',
@@ -57,7 +57,7 @@ router.get('/users/me', auth, async(req, res) => {
     res.send(req.user)
 })
 
-router.post('/users/me/logout', auth, async (req, res) => {
+router.post('/me/logout', auth, async (req, res) => {
     // Log user out of the application
     try {
         

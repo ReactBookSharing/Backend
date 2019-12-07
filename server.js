@@ -17,7 +17,9 @@ const db = process.env.MONGODB_URL;
 mongoose
   .connect(db, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(() => {
     console.log('Connected to MongoDB');
@@ -32,13 +34,7 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
-
-
-
-
-app.use(require('./routers/user'));
-
-app.use(require('./routers/book'));
+require('./routers')(app);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}.`);
